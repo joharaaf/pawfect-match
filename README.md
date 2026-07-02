@@ -46,9 +46,7 @@ Pawfect Match is a full-stack pet adoption platform developed as part of a unive
 Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/pawfect-match.git
-```
-
+git clone https://github.com/joharaaf/pawfect-match.git
 Go to the project folder
 
 ```bash
