@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pawfect Match – <%= pageTitle || 'Home' %></title>
+
+  <!-- a paw icon at the top  -->
+  <link rel="icon" href="/favicon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/css-reset.css" />
+  <% if (activePage !== 'home') { %>
+  <link rel="stylesheet" href="/css/pages.css" />
+<% } %>
+
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="logo" href="/" aria-label="Home">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text">Pawfect</span>
+      </a>
+      <nav aria-label="Main navigation" class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link <%= activePage === 'home' ? 'active' : '' %>" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= activePage === 'adopt' ? 'active' : '' %>" href="/adopt">Adopt</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= activePage === 'plans' ? 'active' : '' %>" href="/plan-details">Plans</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= activePage === 'support' ? 'active' : '' %>" href="/support">Support</a>
+          </li>
+          <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+          <li class="nav-item user-menu">
+            <div class="user-dropdown">
+              <button class="user-button" onclick="toggleUserMenu()">
+                <span class="user-icon">👤</span>
+                <span class="user-name"><%= currentUser.username %></span>
+              </button>
+              <div class="user-dropdown-menu" id="userDropdown">
+                <div class="dropdown-header">
+                  <strong><%= currentUser.username %></strong>
+                  <small><%= currentUser.email %></small>
+                </div>
+                <a href="/welcome" class="dropdown-item">🏠 Dashboard</a>
+                <a href="/logout" class="dropdown-item">🚪 Logout</a>
+              </div>
+            </div>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link <%= activePage === 'profile' ? 'active' : '' %>" href="/profile">Profile</a>
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <script>
+  function toggleUserMenu() {
+    const dropdown = document.getElementById('userDropdown');
+    dropdown.classList.toggle('show');
+  }
+
+  // Close dropdown when clicking outside
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('.user-button') && !e.target.matches('.user-button *')) {
+      const dropdown = document.getElementById('userDropdown');
+      if (dropdown && dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+      }
+    }
+  });
+  </script>

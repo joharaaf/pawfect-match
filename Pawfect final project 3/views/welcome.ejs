@@ -1,0 +1,318 @@
+<%- include('partials/header', { pageTitle: 'Welcome', activePage: 'profile' }) %>
+
+<main id="main-content" class="section">
+  <div class="container">
+    <!-- Welcome Section -->
+    <div class="welcome-hero">
+      <h1>🎉 Welcome, <%= user.username %>!</h1>
+      <p class="welcome-subtitle">We're so glad to have you here at Pawfect Match</p>
+    </div>
+
+    <!-- User Info Card -->
+    <div class="user-info-card">
+      <div class="user-avatar">
+        <span class="avatar-icon">👤</span>
+      </div>
+      <div class="user-details">
+        <h2><%= user.username %></h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">📧 Email:</span>
+            <span class="info-value"><%= user.email %></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">🎂 Age:</span>
+            <span class="info-value"><%= user.age %> years</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">🆔 Member ID:</span>
+            <span class="info-value">#<%= user.id %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adopted Pets Section -->
+    <% if (user.adoptedPets && user.adoptedPets.length > 0) { %>
+    <section class="adopted-pets">
+      <h2>🐾 Your Adoption Interests</h2>
+      <p class="section-note">⚠️ These are temporary selections. Please <a href="/support">contact support</a> to finalize your adoption.</p>
+      <div class="pets-list">
+        <% user.adoptedPets.forEach(pet => { %>
+        <div class="adopted-pet-card">
+          <div class="pet-info">
+            <span class="pet-name"><%= pet.name %></span>
+            <span class="pet-details"><%= pet.type %> • <%= pet.age %> years</span>
+          </div>
+          <a href="/support" class="btn btn-small">Contact Support</a>
+        </div>
+        <% }); %>
+      </div>
+    </section>
+    <% } %>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+      <h2>🚀 Quick Actions</h2>
+      <div class="actions-grid">
+        <a href="/#adoption-finder" class="action-card">
+          <div class="action-icon">🔍</div>
+          <h3>Browse Pets</h3>
+          <p>Find your perfect companion</p>
+        </a>
+        <a href="/adopt" class="action-card">
+          <div class="action-icon">🐾</div>
+          <h3>Learn About Adoption</h3>
+          <p>Discover the adoption process</p>
+        </a>
+        <a href="/plan-details" class="action-card">
+          <div class="action-icon">📋</div>
+          <h3>View Plans</h3>
+          <p>Explore adoption plans</p>
+        </a>
+        <a href="/support" class="action-card">
+          <div class="action-icon">💬</div>
+          <h3>Contact Support</h3>
+          <p>Get help with adoption</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Logout Button -->
+    <div class="logout-section">
+      <a href="/logout" class="btn btn-secondary">🚪 Logout</a>
+    </div>
+
+  </div>
+</main>
+
+<style>
+.welcome-hero {
+  background: linear-gradient(135deg, #e8e0f5 0%, #f5ebe0 100%);
+  padding: 50px 40px;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 40px;
+  border: 2px solid #d4c5f9;
+  box-shadow: 0 8px 24px rgba(103, 65, 136, 0.15);
+}
+
+.welcome-hero h1 {
+  color: #674188;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.user-info-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 6px 20px rgba(103, 65, 136, 0.12);
+  border: 2px solid #e6e6fa;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.user-avatar {
+  flex-shrink: 0;
+}
+
+.avatar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  font-size: 60px;
+  background: linear-gradient(135deg, #674188 0%, #5c5191 100%);
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(103, 65, 136, 0.3);
+}
+
+.user-details h2 {
+  color: #674188;
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+.info-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #fafafa;
+  border-radius: 10px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #674188;
+  min-width: 120px;
+}
+
+.info-value {
+  color: #555;
+}
+
+.quick-actions {
+  margin-bottom: 40px;
+}
+
+.quick-actions h2 {
+  color: #674188;
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.action-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #e6e6fa;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(103, 65, 136, 0.08);
+}
+
+.action-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(103, 65, 136, 0.2);
+  border-color: #d4c5f9;
+}
+
+.action-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.action-card h3 {
+  color: #674188;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.action-card p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.adopted-pets {
+  margin-bottom: 40px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  border: 2px solid #e6e6fa;
+  box-shadow: 0 4px 12px rgba(103, 65, 136, 0.1);
+}
+
+.adopted-pets h2 {
+  color: #674188;
+  margin-bottom: 16px;
+}
+
+.section-note {
+  background: #fff3cd;
+  color: #856404;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #ffc107;
+}
+
+.section-note a {
+  color: #674188;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.pets-list {
+  display: grid;
+  gap: 12px;
+}
+
+.adopted-pet-card {
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e6e6fa;
+}
+
+.pet-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pet-name {
+  font-weight: 700;
+  color: #674188;
+  font-size: 1.1rem;
+}
+
+.pet-details {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.logout-section {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.btn-secondary {
+  background: #dc3545;
+  color: white;
+  border: 2px solid #dc3545;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+}
+
+.btn-secondary:hover {
+  background: #c82333;
+  border-color: #c82333;
+}
+
+@media (max-width: 768px) {
+  .user-info-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .welcome-hero h1 {
+    font-size: 2rem;
+  }
+
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<%- include('partials/footer') %>

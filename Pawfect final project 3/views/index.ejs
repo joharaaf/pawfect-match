@@ -1,0 +1,170 @@
+<%- include('partials/header', { pageTitle: 'Home', activePage: 'home' }) %>
+
+<!-- Simple banner -->
+<section id="home-banner">
+  <img src="/images/banner.png" alt="Dogs and cats banner">
+</section>
+
+<main id="main-content">
+  <!--Introduction to Pawfect-->
+  <section id="overview" class="section">
+    <div class="container">
+      <h1>Find your new best friend</h1>
+      <p style="margin-bottom: 24px;">Pawfect Match helps families browse pets, learn adoption details, and connect with shelters for support.</p>
+      <a href="#pricing" class="btn">View Adoption Plans</a>
+    </div>
+  </section>
+
+  <!-- KPI Stats Band -->
+  <section class="kpi-band">
+    <div class="container">
+      <div class="kpi-grid">
+        <div class="kpi-item">
+          <div class="kpi-value"><%= stats.plans || 0 %></div>
+          <div class="kpi-label"><span aria-hidden="true">📋</span> Adoption Plans</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-value"><%= stats.users || 0 %></div>
+          <div class="kpi-label"><span aria-hidden="true">👨‍👩‍👧‍👦</span> Happy Families</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-value"><%= stats.feedback || 0 %></div>
+          <div class="kpi-label"><span aria-hidden="true">💬</span> Support Messages</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pet Spotlight -->
+  <section class="section">
+    <div class="container">
+      <div class="spotlight-card">
+        <h3>Pet of the Week</h3>
+        <div class="spotlight-name">Bella</div>
+        <div class="spotlight-icon" aria-hidden="true">🐕</div>
+        <div class="spotlight-details">Golden Retriever • 3 years old • Friendly & Playful</div>
+        <p class="spotlight-story">
+          "Bella is a loving companion who adores children and enjoys long walks in the park. 
+          She's house-trained, well-behaved, and ready to bring joy to her forever home. 
+          Bella has been with us for 2 months and is eagerly waiting for a family to call her own!"
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2>Why Choose Pawfect Match?</h2>
+      <div class="features-grid">
+        <article class="feature-card">
+          <img src="/images/browse.png" alt="Browse Pets">
+          <h3>Browse Pets</h3>
+          <p>Filter by type, age, size, and temperament to find your perfect match.</p>
+        </article>
+        <article class="feature-card">
+          <img src="/images/match.png" alt="Smart Match">
+          <h3>Smart Match</h3>
+          <p>Find pets that fit your lifestyle and home perfectly.</p>
+        </article>
+        <article class="feature-card">
+          <img src="/images/shelter.png" alt="Shelter Support">
+          <h3>Shelter Support</h3>
+          <p>Contact shelters and track your application status easily.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Adoption Plans Section (static summary) -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <h2>Adoption Plans</h2>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3><span aria-hidden="true">🥇</span> Forever Home Support</h3>
+          <p class="price">Donation ~ 350 SAR</p>
+          <ul>
+            <li>Training resources</li>
+            <li>Vet discount partners</li>
+            <li>Community forum access</li>
+          </ul>
+          <a class="btn" href="/plan-details#forever">View details</a>
+        </article>
+        <article class="price-card">
+          <h3><span aria-hidden="true">🥈</span> Foster-to-Adopt</h3>
+          <p class="price">Fee ~ 0–100 SAR</p>
+          <ul>
+            <li>Trial period at home</li>
+            <li>Starter supplies list</li>
+            <li>Shelter check-ins</li>
+          </ul>
+          <a class="btn" href="/plan-details#foster">View details</a>
+        </article>
+        <article class="price-card">
+          <h3><span aria-hidden="true">🥉</span> Basic Adoption</h3>
+          <p class="price">Fee ~ 200 SAR</p>
+          <ul>
+            <li>Vaccinated & microchipped</li>
+            <li>Standard paperwork</li>
+            <li>Post-adoption guide</li>
+          </ul>
+          <a class="btn" href="/plan-details#basic">View details</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Adoption Finder Section -->
+  <section id="adoption-finder" class="section">
+    <div class="container">
+      <h2>Adoption Finder</h2>
+      <p class="section-subtitle">Discover your perfect companion</p>
+      
+      <div class="search-card">
+        <div class="search-filters">
+          <div class="form-row">
+            <label for="q">Search by name</label>
+            <input id="q" name="q" type="text" placeholder="e.g., Luna, Max, Bella...">
+          </div>
+
+          <div class="filter-section">
+            <label>Pet Type</label>
+            <div class="filter-options" id="typeFilters">
+              <button type="button" class="filter-button" data-value="">All</button>
+              <button type="button" class="filter-button" data-value="dog">Dogs</button>
+              <button type="button" class="filter-button" data-value="cat">Cats</button>
+              <button type="button" class="filter-button" data-value="rabbit">Rabbits</button>
+              <button type="button" class="filter-button" data-value="bird">Birds</button>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <label>Adoption Plan</label>
+            <div class="filter-options" id="planFilters">
+              <button type="button" class="filter-button" data-value="">All Plans</button>
+              <button type="button" class="filter-button" data-value="basic">Basic</button>
+              <button type="button" class="filter-button" data-value="foster">Foster</button>
+              <button type="button" class="filter-button" data-value="forever">Forever Home</button>
+            </div>
+          </div>
+
+          <div class="search-info">
+            <span id="resultsCount" class="result-count">0 results</span>
+            <button type="button" id="clearFilters" class="clear-filters">Clear filters</button>
+          </div>
+        </div>
+
+        <div id="resultsGrid" class="pet-grid">
+          <!-- Results populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Page-specific JS -->
+<script src="/js/pets-data.js"></script>
+<script src="/js/search.js"></script>
+
+<%- include('partials/footer') %>

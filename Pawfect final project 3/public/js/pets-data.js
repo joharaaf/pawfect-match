@@ -1,0 +1,35 @@
+// Pet dataset for the adoption finder
+// Fields: id, name, type, age (years), temperament, plan (basic|foster|forever)
+
+window.PAWFECT_DATA = [
+  { id: 1, name: "Luna", type: "Cat", age: 2, temperament: "Calm", plan: "basic" },
+  { id: 2, name: "Max", type: "Dog", age: 3, temperament: "Playful", plan: "forever" },
+  { id: 3, name: "Bella", type: "Dog", age: 1, temperament: "Gentle", plan: "foster" },
+  { id: 4, name: "Oliver", type: "Cat", age: 4, temperament: "Independent", plan: "basic" },
+  { id: 5, name: "Coco", type: "Bird", age: 2, temperament: "Curious", plan: "foster" },
+  { id: 6, name: "Rocky", type: "Dog", age: 6, temperament: "Loyal", plan: "forever" },
+  { id: 7, name: "Milo", type: "Rabbit", age: 1, temperament: "Shy", plan: "basic" },
+  { id: 8, name: "Daisy", type: "Dog", age: 5, temperament: "Friendly", plan: "foster" },
+  { id: 9, name: "Nala", type: "Cat", age: 7, temperament: "Affectionate", plan: "forever" },
+  { id: 10, name: "Buddy", type: "Dog", age: 2, temperament: "Energetic", plan: "basic" },
+  { id: 11, name: "Zozi", type: "Bird", age: 1, temperament: "Social", plan: "basic" },
+  { id: 12, name: "Shadow", type: "Cat", age: 5, temperament: "Quiet", plan: "forever" },
+  { id: 13, name: "Zeko", type: "Bird", age: 2, temperament: "Vocal", plan: "basic" },
+  { id: 14, name: "Charlie", type: "Dog", age: 4, temperament: "Smart", plan: "foster" },
+  { id: 15, name: "Whiskers", type: "Cat", age: 3, temperament: "Playful", plan: "basic" },
+  { id: 16, name: "Copper", type: "Dog", age: 7, temperament: "Calm", plan: "forever" },
+  { id: 17, name: "Fluffy", type: "Rabbit", age: 2, temperament: "Friendly", plan: "foster" },
+  { id: 18, name: "Simba", type: "Cat", age: 1, temperament: "Energetic", plan: "basic" },
+  { id: 19, name: "Zeus", type: "Dog", age: 5, temperament: "Protective", plan: "forever" },
+  { id: 20, name: "Tweety", type: "Bird", age: 3, temperament: "Cheerful", plan: "foster" },
+  { id: 21, name: "Mittens", type: "Cat", age: 6, temperament: "Lazy", plan: "basic" },
+  { id: 22, name: "Duke", type: "Dog", age: 4, temperament: "Loyal", plan: "forever" },
+  { id: 23, name: "Snowball", type: "Rabbit", age: 1, temperament: "Gentle", plan: "basic" },
+  { id: 24, name: "Tiger", type: "Cat", age: 2, temperament: "Brave", plan: "foster" },
+  { id: 25, name: "Bailey", type: "Dog", age: 3, temperament: "Sweet", plan: "basic" },
+  { id: 26, name: "Kiwi", type: "Bird", age: 4, temperament: "Playful", plan: "forever" },
+  { id: 27, name: "Princess", type: "Cat", age: 5, temperament: "Elegant", plan: "foster" },
+  { id: 28, name: "Bruno", type: "Dog", age: 6, temperament: "Strong", plan: "forever" },
+  { id: 29, name: "Thumper", type: "Rabbit", age: 2, temperament: "Active", plan: "basic" },
+  { id: 30, name: "Smokey", type: "Cat", age: 8, temperament: "Wise", plan: "forever" }
+];

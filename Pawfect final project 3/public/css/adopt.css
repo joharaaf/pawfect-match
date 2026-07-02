@@ -1,0 +1,251 @@
+/* Adopt Page Specific Styles */
+
+.adopt-hero {
+  background: linear-gradient(135deg, #e8e0f5 0%, #f5ebe0 100%);
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  margin: 30px 0;
+  border: 2px solid #d4c5f9;
+  box-shadow: 0 6px 16px rgba(103, 65, 136, 0.15);
+}
+
+.adopt-hero h2 {
+  color: #674188;
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.adopt-hero p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Process Steps */
+.process-section {
+  margin: 50px 0;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.step-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  border: 2px solid #e6e6fa;
+  box-shadow: 0 4px 12px rgba(103, 65, 136, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(103, 65, 136, 0.2);
+  border-color: #d4c5f9;
+}
+
+.step-number {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.step-card h3 {
+  color: #674188;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.step-card p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Success Stories */
+.success-stories {
+  background-color: #fafafa;
+  padding: 50px 20px;
+  margin: 50px -20px;
+  border-radius: 16px;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.story-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  border: 2px solid #e6e6fa;
+  box-shadow: 0 4px 12px rgba(103, 65, 136, 0.1);
+  transition: all 0.3s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(103, 65, 136, 0.15);
+}
+
+.story-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.story-card h3 {
+  color: #674188;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.story-card p {
+  color: #555;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.story-meta {
+  color: #888;
+  font-size: 0.9rem;
+  text-align: right;
+  font-weight: 600;
+}
+
+/* Why Adopt Section */
+.why-adopt {
+  margin: 50px 0;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.benefit-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #e6e6fa;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(103, 65, 136, 0.08);
+}
+
+.benefit-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(103, 65, 136, 0.15);
+  border-color: #d4c5f9;
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.benefit-item h3 {
+  color: #674188;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.benefit-item p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* CTA Section */
+.cta-section {
+  margin: 50px 0;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #674188 0%, #5c5191 100%);
+  color: #ffffff;
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(103, 65, 136, 0.3);
+}
+
+.cta-box h2 {
+  color: #ffffff;
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+}
+
+.cta-box p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-buttons .btn {
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.cta-buttons .btn-primary {
+  background: #ffffff;
+  color: #674188;
+  border: 2px solid #ffffff;
+}
+
+.cta-buttons .btn-primary:hover {
+  background: #f5ebe0;
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .adopt-hero {
+    padding: 30px 20px;
+  }
+
+  .adopt-hero h2 {
+    font-size: 1.6rem;
+  }
+
+  .process-steps,
+  .stories-grid,
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-box {
+    padding: 35px 20px;
+  }
+
+  .cta-box h2 {
+    font-size: 1.7rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+}

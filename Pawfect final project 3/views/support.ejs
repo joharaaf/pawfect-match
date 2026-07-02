@@ -1,0 +1,192 @@
+<%- include('partials/header', { pageTitle: 'Support', activePage: 'support' }) %>
+
+<main id="main-content" class="section">
+  <div class="container">
+    <h1>Contact Support</h1>
+    <p>If you have questions about adoption, plans, or the website, send us a message.</p>
+    
+    <% if (typeof success !== 'undefined' && success) { %>
+    <div class="message-banner message-success">
+      <%= success %>
+    </div>
+    <% } %>
+    
+    <% if (typeof error !== 'undefined' && error) { %>
+    <div class="message-banner message-error">
+      <%= error %>
+    </div>
+    <% } %>
+    
+    <!-- Happy Families Success Stories -->
+    <div class="happy-families-banner">
+      <h3>Happy Families, Happy Pets</h3>
+      <p>Join thousands of families who found their perfect companion through Pawfect Match. Ready to start your adoption journey?</p>
+      <div style="margin-top: 16px;">
+        <a href="/adopt" class="btn" style="display: inline-block;">🐾 Adopt a Pet Today</a>
+      </div>
+    </div>
+
+    <!-- Contact Form (Phase 2: posts to /feedback) -->
+    <form id="contactForm" class="form" action="/feedback" method="POST" novalidate>
+      <div class="form-row">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required minlength="2" />
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+      </div>
+
+      <div class="form-row">
+        <label for="subject">Subject</label>
+        <input id="subject" name="subject" type="text" required />
+      </div>
+
+      <div class="form-row">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="planName">Related Plan (optional)</label>
+        <select id="planName" name="planName">
+          <option value="">— Select —</option>
+          <option value="basic">Basic Adoption</option>
+          <option value="foster">Foster-to-Adopt</option>
+          <option value="forever">Forever Home Support</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn" type="submit">Send Message</button>
+      </div>
+    </form>
+
+    <!-- 🔍 Simple search for feedback (any attribute) -->
+    <form action="/support" method="GET" class="search-box" style="margin-top: 2rem; margin-bottom: 1.5rem;">
+      <input
+        type="text"
+        name="search"
+        placeholder="Search feedback (name, email, subject, message, plan)..."
+        value="<%= keyword || '' %>"
+        class="search-input" />
+      <button type="submit" class="search-btn btn">Search</button>
+    </form>
+
+    <hr class="section-divider" />
+
+    <h2>Customer Reviews</h2>
+
+<div class="reviews-grid">
+  <% 
+  // Fixed customer reviews - always displayed
+  var fixedReviews = [
+    {
+      name: 'Emily Johnson',
+      email: 'emily.j@email.com',
+      subject: 'Amazing experience with Forever Home Support',
+      message: 'The Forever Home Support plan made adopting our first pet so much easier. The training resources and community forum were incredibly helpful. Our golden retriever Max is now a happy member of our family!',
+      planName: 'forever',
+      createdAt: new Date('2024-10-15')
+    },
+    {
+      name: 'Michael Chen',
+      email: 'm.chen@email.com',
+      subject: 'Foster program was perfect for us',
+      message: 'We were nervous about adopting, so the Foster-to-Adopt plan was ideal. The trial period helped us understand if we were ready, and now Luna is officially ours. Highly recommend this option!',
+      planName: 'foster',
+      createdAt: new Date('2024-11-02')
+    },
+    {
+      name: 'Lisa Martinez',
+      email: 'lisa.m@email.com',
+      subject: 'Simple and straightforward adoption',
+      message: 'The Basic Adoption plan was exactly what we needed. Clear process, helpful staff, and our cat Whiskers came home healthy and happy. Thank you Pawfect Match!',
+      planName: 'basic',
+      createdAt: new Date('2024-10-28')
+    },
+    {
+      name: 'David Smith',
+      email: 'david.s@email.com',
+      subject: 'Great support team',
+      message: 'Had some questions about the adoption process and the support team responded quickly with detailed answers. Very professional and caring. Looking forward to adopting soon!',
+      planName: '',
+      createdAt: new Date('2024-11-10')
+    }
+  ];
+
+  // Combine fixed reviews with database reviews
+  var allReviews = fixedReviews.slice();
+  if (feedbackList && feedbackList.length) {
+    allReviews = allReviews.concat(feedbackList);
+  }
+
+  if (!allReviews || !allReviews.length) { %>
+    <p class="no-reviews">No reviews yet. Be the first to share your experience!</p>
+  <% } else { %>
+    <% allReviews.forEach(function(item) { 
+      var planBadge = '';
+      var planColor = '';
+      var planName = (item.planName || '').toLowerCase();
+      if (planName === 'basic') {
+        planBadge = 'Basic';
+        planColor = 'badge-basic';
+      } else if (planName === 'foster') {
+        planBadge = 'Foster';
+        planColor = 'badge-foster';
+      } else if (planName === 'forever') {
+        planBadge = 'Forever';
+        planColor = 'badge-forever';
+      } else {
+        planBadge = 'General';
+        planColor = 'badge-general';
+      }
+      
+      var formattedDate = '';
+      if (item.createdAt) {
+        var date = new Date(item.createdAt);
+        formattedDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+      
+      // Only show delete button for database reviews (not fixed reviews)
+      var isFixedReview = fixedReviews.some(function(fr) { 
+        return fr.email === item.email && fr.message === item.message; 
+      });
+    %>
+      <article class="review-card">
+        <div class="review-header">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar"></div>
+            <div class="reviewer-details">
+              <h3 class="reviewer-name"><%= item.name %></h3>
+              <p class="reviewer-email"><%= item.email %></p>
+            </div>
+          </div>
+          <span class="review-date"><%= formattedDate || 'Just now' %></span>
+        </div>
+        
+        <div class="review-meta">
+          <span class="plan-badge <%= planColor %>"><%= planBadge %></span>
+          <span class="review-subject"><%= item.subject %></span>
+        </div>
+        
+        <div class="review-content">
+          <p><%= item.message %></p>
+        </div>
+        
+        <% if (!isFixedReview && item.id) { %>
+        <div class="review-actions">
+          <form action="/feedback/<%= item.id %>?_method=DELETE" method="POST" style="display: inline;">
+            <button class="btn-delete" type="submit">Delete</button>
+          </form>
+        </div>
+        <% } %>
+      </article>
+    <% }); %>
+  <% } %>
+</div>
+</main>
+
+<script src="/js/form-validation.js"></script>
+<%- include('partials/footer') %>

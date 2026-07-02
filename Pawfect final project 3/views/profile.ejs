@@ -1,0 +1,157 @@
+<%- include('partials/header', { pageTitle: 'Profile', activePage: 'profile' }) %>
+
+<main id="main-content" class="section">
+  <div class="container">
+    <h1>Your Profile & Account</h1>
+    <p class="intro-text">Sign in to access your account, or create a new account to get started with pet adoption.</p>
+
+    <% if (typeof success !== 'undefined' && success) { %>
+    <div class="message-banner message-success">
+      <%= success %>
+    </div>
+    <% } %>
+    
+    <% if (typeof error !== 'undefined' && error) { %>
+    <div class="message-banner message-error">
+      <%= error %>
+    </div>
+    <% } %>
+
+    <div class="auth-container">
+      <!-- Sign In Form -->
+      <section aria-labelledby="signin-title" class="auth-card">
+        <h2 id="signin-title"><span aria-hidden="true">🔑</span> Sign In</h2>
+        <p class="form-description">Already have an account? Sign in here.</p>
+        <form id="signinForm" class="auth-form" action="/login" method="POST">
+          <div class="form-row">
+            <label for="signin-email">Email</label>
+            <input type="email" id="signin-email" name="email" required placeholder="your.email@example.com" autocomplete="email">
+          </div>
+
+          <div class="form-row">
+            <label for="signin-password">Password</label>
+            <input type="password" id="signin-password" name="password" required placeholder="Enter your password" minlength="6" autocomplete="current-password">
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Sign In</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Registration Form -->
+      <section aria-labelledby="register-title" class="auth-card">
+        <h2 id="register-title"><span aria-hidden="true">✨</span> Create Account</h2>
+        <p class="form-description">New to Pawfect Match? Register below.</p>
+        <form id="registerForm" action="/users" method="POST" class="auth-form">
+          <div class="form-row">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required minlength="3" placeholder="Choose a username" autocomplete="username">
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com" autocomplete="email">
+          </div>
+
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="6" placeholder="Create a password" autocomplete="new-password">
+          </div>
+
+          <div class="form-row">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required min="13" max="120" placeholder="18">
+          </div>
+
+          <div class="form-row">
+            <label for="joinDate">Join Date</label>
+            <input type="date" id="joinDate" name="joinDate" required>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Create Account</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- Registered Users Section -->
+    <% if (users && users.length > 0) { %>
+    <section id="registered-users" class="section">
+      <h2><span aria-hidden="true">👥</span> Recently Registered Users</h2>
+      <p class="intro-text">Welcome to our growing community of pet lovers!</p>
+      
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th>Join Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(user => { %>
+            <tr>
+              <td><strong><%= user.username %></strong></td>
+              <td><%= user.email %></td>
+              <td><%= user.age %></td>
+              <td><%= new Date(user.joinDate).toLocaleDateString() %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <% } %>
+
+    <!-- User Dashboard (shown after login - placeholder for now) -->
+    <section id="user-dashboard" class="dashboard-section" style="display: none;">
+      <h2>🏠 Welcome back, <span id="userName">Adopter</span>!</h2>
+
+      <div class="dashboard-grid">
+        <!-- Overview Card -->
+        <article class="card dashboard-card">
+          <h3>📊 Overview</h3>
+          <p>💖 Saved pets: <strong id="savedCount">0</strong></p>
+          <p>📅 Next shelter visit: <time id="nextVisit" datetime="">Not scheduled</time></p>
+          <p>📋 Current plan: <strong id="currentPlan">—</strong></p>
+        </article>
+
+        <!-- Quick Actions Card -->
+        <article class="card dashboard-card">
+          <h3>⚡ Quick Actions</h3>
+          <ul class="quick-actions">
+            <li><a class="btn" href="/#overview">🐕 Browse Pets</a></li>
+            <li><a class="btn" href="/plan-details">📋 View Plans</a></li>
+            <li><a class="btn" href="/support">💬 Contact Support</a></li>
+          </ul>
+        </article>
+
+        <!-- Recent Activity Card -->
+        <article class="card dashboard-card">
+          <h3>🕒 Recent Activity</h3>
+          <ul id="activityList" class="activity-list">
+            <li>No recent activity</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+// Set default join date to today
+document.addEventListener('DOMContentLoaded', function() {
+  const joinDateInput = document.getElementById('joinDate');
+  if (joinDateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    joinDateInput.value = today;
+  }
+});
+</script>
+
+<script src="/js/form-validation.js"></script>
+<%- include('partials/footer') %>

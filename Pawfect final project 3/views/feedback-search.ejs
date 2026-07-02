@@ -1,0 +1,29 @@
+<%- include('partials/header', { pageTitle: 'Search Feedback', activePage: 'support' }) %>
+
+<main id="main-content" class="section">
+  <div class="container">
+    <h1>Search Results</h1>
+    <p>Showing results for: <strong>"<%= keyword %>"</strong></p>
+
+    <% if (!results || !results.length) { %>
+      <p>No feedback found matching that keyword.</p>
+    <% } else { %>
+      <ul class="feedback-list">
+        <% results.forEach(item => { %>
+          <li class="feedback-item">
+            <h3><%= item.subject %></h3>
+            <p><strong><%= item.name %></strong> – <%= item.email %></p>
+            <p><%= item.message %></p>
+            <small><%= item.createdAt.toLocaleString() %></small>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <p style="margin-top: 1.5rem;">
+      <a href="/support">← Back to Support</a>
+    </p>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
